@@ -1,5 +1,7 @@
 package com.example.cinemacda.realisateur;
 
+import com.example.cinemacda.realisateur.dto.ReaFilmsDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,9 +12,11 @@ public class RealisateurController {
 
     private final RealisateurService realisateurService;
 
+    private final ObjectMapper reaMapper;
 
-    public RealisateurController(RealisateurService realisateurService) {
+    public RealisateurController(RealisateurService realisateurService, ObjectMapper reaMapper) {
         this.realisateurService = realisateurService;
+        this.reaMapper = reaMapper;
     }
 
     @GetMapping
@@ -26,8 +30,9 @@ public class RealisateurController {
     }
 
     @GetMapping("/{id}")
-    public Realisateur findById(@PathVariable Integer id) {
-        return realisateurService.findById(id);
+    public ReaFilmsDto findById(@PathVariable Integer id) {
+        Realisateur realisateur = realisateurService.findById(id);
+        return reaMapper.convertValue(realisateur, ReaFilmsDto.class);
     }
 
     @DeleteMapping("/{id}")
