@@ -1,5 +1,8 @@
 package com.example.cinemacda.film;
 
+import com.example.cinemacda.acteur.Acteur;
+import com.example.cinemacda.acteur.dto.ActeurIdDto;
+import com.example.cinemacda.film.dto.ActeurDuFilmDto;
 import com.example.cinemacda.film.dto.FilmCompletDto;
 import com.example.cinemacda.film.dto.FilmReduitDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,8 +36,14 @@ public class FilmController {
 
     @GetMapping("/{id}") // /films/1
     public FilmCompletDto findById(@PathVariable Integer id) {
-       Film film = filmService.findById(id);
-       return myMapper.convertValue(film, FilmCompletDto.class);
+        Film film = filmService.findById(id);
+        return myMapper.convertValue(film, FilmCompletDto.class);
+    }
+
+    @GetMapping("/{id}/acteurs") // /films/1
+    public List<ActeurIdDto> findByIdAndActor(@PathVariable Integer id) {
+        return filmService.findById(id).getActeurs().stream().map(
+                acteur -> myMapper.convertValue(acteur, ActeurIdDto.class)).toList();
     }
 
     @DeleteMapping("/{id}")
