@@ -1,0 +1,30 @@
+# Attribution spring qui contient la configuration de Spring Boot
+spring:
+  data:
+    jdbc:
+      repositories:
+        enabled: true
+  # Configuration de la datasource
+  datasource:
+    # Url de la datasource
+    # On y ajoute quelques paramètres pour éviter des erreurs
+    url: jdbc:mysql://localhost:3306/cinema?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    # serverTimezone : fuseau horaire
+    # useSSL : désactive le SSL
+    # allowPublicKeyRetrieval : autorise la récupération de la clé publique (pour se loguer)
+    username: cinemadmin
+    password: pass4cinemadmin
+  # Configuration de JPA
+  jpa:
+    # Dialecte de la base de données
+    hibernate:
+      ddl-auto: update
+      # Permet d'afficher les requêtes SQL dans la console
+    show-sql: true
+# Paramètres du serveur
+server:
+  # Gestion des erreurs
+  error:
+    include-stacktrace: never
+  # Port d'écoute
+  port: 8080
