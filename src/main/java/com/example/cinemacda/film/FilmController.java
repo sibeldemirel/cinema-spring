@@ -3,6 +3,7 @@ package com.example.cinemacda.film;
 import com.example.cinemacda.acteur.dto.ActeurIdDto;
 import com.example.cinemacda.film.dto.FilmCompletDto;
 import com.example.cinemacda.film.dto.FilmReduitDto;
+import com.example.cinemacda.realisateur.Realisateur;
 import com.example.cinemacda.realisateur.dto.RealisateurIdDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
@@ -65,4 +66,11 @@ public class FilmController {
     public Film findByTitre(@RequestParam String titre) {
         return filmService.findByTitre(titre);
     }
+
+    @PostMapping("/{id}/acteurs")
+    public List<Film> findActorsById(@PathVariable Integer id){
+        return filmService.findById(id).getActeurs().stream().map(
+                acteur -> myMapper.convertValue(acteur, Film.class)).toList();
+    }
+
 }

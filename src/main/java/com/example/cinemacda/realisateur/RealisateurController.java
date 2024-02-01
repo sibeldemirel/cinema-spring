@@ -2,10 +2,8 @@ package com.example.cinemacda.realisateur;
 
 import com.example.cinemacda.film.Film;
 import com.example.cinemacda.film.FilmService;
-import com.example.cinemacda.film.dto.FilmOfRea;
 import com.example.cinemacda.film.dto.FilmSansActeursNiRealisateurDto;
 import com.example.cinemacda.realisateur.dto.ReaFilmsDto;
-import com.example.cinemacda.realisateur.dto.RealisateurAvecFilmsDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,6 +57,4 @@ public class RealisateurController {
     public Realisateur update(@RequestBody Realisateur realisateur) {
         return realisateurService.update(realisateur);
     }
-
-
 }
