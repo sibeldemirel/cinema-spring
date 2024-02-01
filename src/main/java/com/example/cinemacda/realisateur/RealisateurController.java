@@ -1,7 +1,6 @@
 package com.example.cinemacda.realisateur;
 
-import com.example.cinemacda.acteur.dto.ActeurIdDto;
-import com.example.cinemacda.realisateur.dto.FilmOfRea;
+import com.example.cinemacda.film.dto.FilmOfRea;
 import com.example.cinemacda.realisateur.dto.ReaFilmsDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +38,7 @@ public class RealisateurController {
 
     @GetMapping("/{id}/films")
     public List<FilmOfRea> findByTitleAndInfo(@PathVariable Integer id) {
-        return realisateurService.findById(id).getNom().stream().map(
+        return realisateurService.findById(id).getId().stream().map(
                 film -> reaMapper.convertValue(film, FilmOfRea.class)).toList();
     }
 
