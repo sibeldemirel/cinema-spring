@@ -1,5 +1,8 @@
 package com.example.cinemacda.film;
 
+import com.example.cinemacda.acteur.Acteur;
+import com.example.cinemacda.acteur.ActeurRepository;
+import com.example.cinemacda.acteur.ActeurService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -8,9 +11,11 @@ import java.util.List;
 @Service
 public class FilmService {
     private final FilmRepository filmRepository;
+    private final ActeurService acteurService;
 
-    public FilmService(FilmRepository filmRepository) {
+    public FilmService(FilmRepository filmRepository, ActeurRepository acteurRepository, ActeurService acteurService) {
         this.filmRepository = filmRepository;
+        this.acteurService = acteurService;
     }
 
     public List<Film> findAll() {
@@ -54,5 +59,16 @@ public class FilmService {
                 orElseThrow(
                         ()->new ResponseStatusException(
                         HttpStatus.NOT_FOUND,"Aucun film ayant ce realisateur"));
+    }
+
+    public List<Acteur> findActeursByFilm(Integer id) {
+        Film film = this.findById(id);
+        return film.getActeurs();
+    }
+    public Film addActeurToFilm(Integer id, Acteur acteur) {
+        Film film = findById(id);
+        Acteur acteurTrouve = acteurService.findById(acteur.getId());
+        film.getActeurs().add(acteurTrouve);
+        return filmRepository.save(film);
     }
 }
