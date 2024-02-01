@@ -55,6 +55,4 @@ public class FilmService {
                         ()->new ResponseStatusException(
                         HttpStatus.NOT_FOUND,"Aucun film ayant ce realisateur"));
     }
-
-
 }

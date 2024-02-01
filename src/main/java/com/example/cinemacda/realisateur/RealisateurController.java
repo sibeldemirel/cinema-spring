@@ -1,7 +1,11 @@
 package com.example.cinemacda.realisateur;
 
+import com.example.cinemacda.film.Film;
+import com.example.cinemacda.film.FilmService;
 import com.example.cinemacda.film.dto.FilmOfRea;
+import com.example.cinemacda.film.dto.FilmSansActeursNiRealisateurDto;
 import com.example.cinemacda.realisateur.dto.ReaFilmsDto;
+import com.example.cinemacda.realisateur.dto.RealisateurAvecFilmsDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +16,13 @@ import java.util.List;
 public class RealisateurController {
 
     private final RealisateurService realisateurService;
+    private final FilmService filmService;
 
     private final ObjectMapper reaMapper;
 
-    public RealisateurController(RealisateurService realisateurService, ObjectMapper reaMapper) {
+    public RealisateurController(RealisateurService realisateurService, FilmService filmService, ObjectMapper reaMapper) {
         this.realisateurService = realisateurService;
+        this.filmService = filmService;
         this.reaMapper = reaMapper;
     }
 
@@ -37,11 +43,13 @@ public class RealisateurController {
     }
 
     @GetMapping("/{id}/films")
-    public List<FilmOfRea> findByTitleAndInfo(@PathVariable Integer id) {
-        return realisateurService.findById(id).getId().stream().map(
-                film -> reaMapper.convertValue(film, FilmOfRea.class)).toList();
-    }
+    public List<FilmSansActeursNiRealisateurDto> findFilmsByRealisateurId(@PathVariable Integer id) {
+        List<Film> filmsDuRealisateur = realisateurService.findFilmsByRealisateurId(id);
 
+        return filmsDuRealisateur.stream().map(
+                film -> reaMapper.convertValue(film, FilmSansActeursNiRealisateurDto.class)
+        ).toList();
+    }
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
         realisateurService.deleteById(id);
@@ -51,4 +59,6 @@ public class RealisateurController {
     public Realisateur update(@RequestBody Realisateur realisateur) {
         return realisateurService.update(realisateur);
     }
+
+
 }
