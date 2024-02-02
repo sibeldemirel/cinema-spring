@@ -1,11 +1,12 @@
 package com.example.cinemacda.seance;
 
-import com.example.cinemacda.salle.Salle;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@Service
 public class SeanceService {
     private final SeanceRepository seanceRepository;
 

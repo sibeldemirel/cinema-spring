@@ -40,6 +40,4 @@ public class SalleService {
     public void deleteById(Integer id){salleRepository.deleteById(id);}
 
     public Salle update(Salle salle){return salleRepository.save(salle);}
-
-
 }

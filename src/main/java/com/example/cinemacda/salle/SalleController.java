@@ -1,15 +1,11 @@
 package com.example.cinemacda.salle;
 
-import com.example.cinemacda.salle.dto.SalleNameCapTechDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RequestMapping("/salles")
 @RestController
 public class SalleController {
     private final SalleService salleService;
@@ -21,7 +17,7 @@ public class SalleController {
         this.salleMapper = salleMapper;
     }
 
-    @GetMapping
+   /* @GetMapping
     public List<SalleNameCapTechDto> findAll(){
         return salleService.findall().stream().map(
                 salle -> salleMapper.convertValue(salle, SalleNameCapTechDto.class)
@@ -31,5 +27,10 @@ public class SalleController {
     @PostMapping
     public Salle save(@RequestBody Salle salle){
         return salleService.save(salle);
+    }*/
+
+    @GetMapping
+    public List<Salle> findAll() {
+        return salleService.findall();
     }
 }
