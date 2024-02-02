@@ -27,6 +27,16 @@ public class SalleService {
                 );
     }
 
+    public Salle findByCapacity(int capacity){
+        return salleRepository.findByCapacity(capacity)
+                .orElseThrow(
+                        () -> new ResponseStatusException(
+                                HttpStatus.NOT_FOUND,
+                                "Salle Non trouvée"
+                        )
+                );
+    }
+
     public Salle findByNom(String nom){
         return salleRepository.findByNom(nom)
                 .orElseThrow(
@@ -40,4 +50,5 @@ public class SalleService {
     public void deleteById(Integer id){salleRepository.deleteById(id);}
 
     public Salle update(Salle salle){return salleRepository.save(salle);}
+
 }

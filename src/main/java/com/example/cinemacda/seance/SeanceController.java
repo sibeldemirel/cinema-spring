@@ -21,4 +21,6 @@ public class SeanceController {
 
     @PostMapping
     public Seance save(@RequestBody Seance seance){ return seanceService.save(seance);}
+
+
 }

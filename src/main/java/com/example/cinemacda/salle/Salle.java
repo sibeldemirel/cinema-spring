@@ -19,7 +19,7 @@ import lombok.Setter;
 public class Salle {
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
     @Column(nullable = false)
     private int numero;
     @Column(nullable = false)

@@ -30,8 +30,8 @@ public class SalleController {
         return salleService.save(salle);
     }
 
-   /* @GetMapping
-    public List<Salle> findAll() {
-        return salleService.findall();
-    }*/
+    @GetMapping("/{id}/capacity")
+    public Salle findByCapacity(@PathVariable Integer id){
+        return salleService.findById(id);
+    }
 }
