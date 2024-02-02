@@ -27,9 +27,22 @@ public class TicketService {
         //enregistrer seance
         seanceService.findById(ticket.getSeance().getId());
         Seance disponibility = seanceService.findById(ticket.getNbPlaces());
-        int placesRestantes = disponibility.getPlaceDispo() - ticket.getNbPlaces();
-        ticket.setNbPlaces(placesRestantes);
-        return ticketRepository.save(ticket);
+        /*int placesRestantes = disponibility.getPlaceDispo() - ticket.getNbPlaces();
+        ticket.setNbPlaces(placesRestantes);*/
+
+        if (disponibility.getPlaceDispo() != null &&
+                ticket.getNbPlaces() > 0 &&
+                ticket.getNomClient().isEmpty() &&
+                ticket.getNbPlaces() <= disponibility.getPlaceDispo())
+        {
+            int placesRestantes = disponibility.getPlaceDispo() - ticket.getNbPlaces();
+            ticket.setNbPlaces(placesRestantes);
+            return ticketRepository.save(ticket);
+        }else{
+
+        }
+        return ticket;
+
     }
 
     public Ticket findById(Integer id){
