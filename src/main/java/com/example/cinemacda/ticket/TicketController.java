@@ -1,8 +1,6 @@
 package com.example.cinemacda.ticket;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,6 @@ public class TicketController {
     @GetMapping
     public List<Ticket> findAll(){return ticketService.findAll();}
 
-
+    @PostMapping
+    public Ticket save(@RequestBody Ticket ticket){return ticketService.save(ticket);}
 }

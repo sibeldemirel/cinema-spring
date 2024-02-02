@@ -1,5 +1,6 @@
 package com.example.cinemacda.salle;
 
+import com.example.cinemacda.salle.dto.SalleNameCapTechDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class SalleController {
         this.salleMapper = salleMapper;
     }
 
-   /* @GetMapping
+    @GetMapping
     public List<SalleNameCapTechDto> findAll(){
         return salleService.findall().stream().map(
                 salle -> salleMapper.convertValue(salle, SalleNameCapTechDto.class)
@@ -27,10 +28,10 @@ public class SalleController {
     @PostMapping
     public Salle save(@RequestBody Salle salle){
         return salleService.save(salle);
-    }*/
+    }
 
-    @GetMapping
+   /* @GetMapping
     public List<Salle> findAll() {
         return salleService.findall();
-    }
+    }*/
 }

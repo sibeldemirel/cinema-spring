@@ -16,7 +16,7 @@ public class TicketService {
 
     public List<Ticket> findAll(){return ticketRepository.findAll();}
 
-    public Ticket save(Ticket ticket){return ticketRepository.saveAndFlush(ticket);}
+    public Ticket save(Ticket ticket){return ticketRepository.save(ticket);}
 
     public Ticket findById(Integer id){
         return ticketRepository.findById(id)
