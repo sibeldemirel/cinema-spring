@@ -27,6 +27,5 @@ public class Acteur {
 
     @ManyToMany
             (mappedBy = "acteurs")
-
     private List<Film> films = new ArrayList<>();
 }

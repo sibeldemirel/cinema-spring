@@ -18,7 +18,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Table(name="film")
-
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id"
@@ -41,7 +40,6 @@ public class Film {
     private String synopsis;
 
     @ManyToOne
-    // Many Films to One Realisateur
     @JoinColumn(name = "realisateur_id")
     private Realisateur realisateur;
 

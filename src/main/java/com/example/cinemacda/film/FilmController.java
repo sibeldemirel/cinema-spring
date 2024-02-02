@@ -17,13 +17,11 @@ import java.util.List;
 @RequestMapping("/films")
 public class FilmController {
     private final FilmService filmService;
-    private final ActeurService acteurService;
 
     private final ObjectMapper myMapper;
 
-    public FilmController(FilmService filmService, ActeurService acteurService, ObjectMapper myMapper) {
+    public FilmController(FilmService filmService, ObjectMapper myMapper) {
         this.filmService = filmService;
-        this.acteurService = acteurService;
         this.myMapper = myMapper;
     }
 

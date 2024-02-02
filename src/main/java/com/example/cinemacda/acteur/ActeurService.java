@@ -45,7 +45,7 @@ public class ActeurService {
                 .orElseThrow(
                         () -> new ResponseStatusException(
                                 HttpStatus.NOT_FOUND,
-                                "Aucun acteur avec le nom : " + nom
+                                "Aucune salle avec le nom : " + nom
                         )
                 );
     }
