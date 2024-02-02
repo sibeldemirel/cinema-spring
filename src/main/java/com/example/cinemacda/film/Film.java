@@ -2,6 +2,7 @@ package com.example.cinemacda.film;
 
 import com.example.cinemacda.acteur.Acteur;
 import com.example.cinemacda.realisateur.Realisateur;
+import com.example.cinemacda.seance.Seance;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;

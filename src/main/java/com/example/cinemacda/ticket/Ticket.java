@@ -15,7 +15,7 @@ public class Ticket {
     @Id
     @GeneratedValue
     private Integer id;
-    @Column(nullable = false)
+    @ManyToOne
     private Seance seance;
     @Column(nullable = false)
     private String nomClient;

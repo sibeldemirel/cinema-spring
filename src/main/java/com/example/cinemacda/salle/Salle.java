@@ -1,15 +1,11 @@
 package com.example.cinemacda.salle;
 
-import com.example.cinemacda.seance.Seance;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -30,9 +26,4 @@ public class Salle {
     private String nom;
     @Column(nullable = false)
     private int capacity;
-
-    private String equipement;
-
-    @OneToMany(mappedBy = "salle")
-    private List<Seance> seances = new ArrayList<>();
 }
